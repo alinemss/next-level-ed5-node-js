@@ -1,10 +1,8 @@
 import { Request, Response} from "express";
+import { SettingsService } from "../services/SettingsServices";
 
-import {getCustomRepository} from "typeorm";
-import {SettingsRepository} from "../repositories/SettingsRepository"
 
 class SettingsController {
-
 /**
  * Tipos de paramentros
  * Routes Params => Paramentros de rotas
@@ -15,26 +13,22 @@ class SettingsController {
  *    json (objetos passando na rota)
  * }
  */
+ async create(request: Request, response:Response) {
+   
+  const {chat, username} = request.body;
+  console.log(request.body);
+  const settingsService = new SettingsService();
+try{
+  const settings = await settingsService.create({chat,username});
 
-  async create(request: Request, response:Response){
+  return response.json(settings);
+}catch(err) {
+  return response.status(400).json({message: err.message})
+};
+ }
   //const body = request.body
   //escrevemos no codigo de forma desestruturada sabendo que os parametros são {chat, username}
 
-    const {chat, username} = request.body;
-        
-    const settingsRepository = getCustomRepository(SettingsRepository)
-  
-    const settings = settingsRepository.create({chat,username});
-  
-  await settingsRepository.save(settings);
-  
-  return response.json(settings)
-  
-
-  }
-
-
-}
-
-
+ 
+ }
 export {SettingsController}

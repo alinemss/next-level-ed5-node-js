@@ -1,8 +1,6 @@
 //para criar a migration rodei no console o yarn typeform "migration:create"  (funcionalidade do typeorm) -n CreateSettings (Nome Definido por mim)
 
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
-import { QueryExpressionMap } from "typeorm/query-builder/QueryExpressionMap";
-
 export class CreateSettings1618963631463 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
