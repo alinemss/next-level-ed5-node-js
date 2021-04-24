@@ -1,28 +1,6 @@
-import express, { response } from 'express';
+import {http} from "./http"
+//não entendi pq importou e pra onde usou
+import "./websocket/client";
 
+http.listen(3333, () => console.log("Server is Running on 3333"))
 
-//nessa etapa não entendi as chaves na hora de importar
-import {routes} from "./routes"
-
-import "./database";
-
-const app = express();
-
-//*Rotas Antigas*
-// // app.get("/",(request,response)=> {
-
-// //   return response.json({
-
-// //     message:"Olá NLW 05"
-// //   }) 
-// // })
-
-// // app.post("/", (request, response)=>{
-// //   return response.json({
-// //     message: "Usuário salvo com Sucessos"
-// //   })
-// // })
-
-app.use(express.json());
-app.use(routes);
-app.listen(3333, () => console.log ("Server is Running on 3333"))
