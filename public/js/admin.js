@@ -1,6 +1,7 @@
 //Mission Complete
 const socket = io();
 let connectionsUsers = [];
+let connectionsInSupport = [];
 
 socket.on("admin_list_all_users", (connections) =>{
   connectionsUsers = connections;
@@ -26,7 +27,9 @@ socket.on("admin_list_all_users", (connections) =>{
 function call(id) {
   
   const connection = connectionsUsers.find(
-    (connection) => connection.socket_id == id);
+    (connection) => connection.socket_id === id);
+
+    connectionsInSupport.push(connection);
 
   const template = document.getElementById("admin_template").innerHTML;
 
@@ -95,22 +98,23 @@ function sendMessage(id){
 
     text.value = "";
 }
-
-socket.on("admin_receive_message", data=>{
-    const connection = connectionsUsers.find(connection=> 
+//Tentar entender melhor a parte 
+socket.on("admin_receive_message", (data)=>{
+    const connection = connectionsInSupport.find(connection=> 
     connection.socket_id = data.socket_id);
-
+    console.log(data)  
+    
     const divMesages = document.getElementById(
       `allMessages${connection.user_id}`
     );
- 
+      
   const createDiv = document.createElement("div");
   createDiv.className = "admin_message_client"
 
     createDiv.innerHTML = `<span>${connection.user.email}</span>`;
     createDiv.innerHTML += `<span>${data.message.text}</span>`;
     createDiv.innerHTML += `<span class="admin_date">${dayjs(
-     //não entendi pq vem de params
+     
       data.message.created_at
     ).format("DD/MM?YYYY HH:mm:ss")} </span>`;
 

@@ -94,4 +94,5 @@ document.querySelector("#send_message_button").addEventListener("click", (event)
   document.getElementById("messages")
   .innerHTML += rendered;
 
+  text.value = ""
 });

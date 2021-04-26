@@ -66,7 +66,7 @@ io.on("connect", (socket)=> {
       const allUsers = await connectionsService.findAllWhithoutAdmin();
       io.emit("admin_list_all_users", allUsers)
   });
-
+//não ta funcionando corretamente
   socket.on("client_send_to_admin", async params => {
     const {text,socket_admin_id} = params;
   
