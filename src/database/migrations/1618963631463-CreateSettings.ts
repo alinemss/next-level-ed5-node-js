@@ -1,3 +1,4 @@
+//Mission Complete
 //para criar a migration rodei no console o yarn typeform "migration:create"  (funcionalidade do typeorm) -n CreateSettings (Nome Definido por mim)
 
 import {MigrationInterface, QueryRunner, Table} from "typeorm";

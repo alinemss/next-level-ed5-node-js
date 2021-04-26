@@ -1,3 +1,4 @@
+//Mission Complete
 import {MigrationInterface, QueryRunner,Table} from "typeorm";
 
 export class CreateMessages1619042398687 implements MigrationInterface {

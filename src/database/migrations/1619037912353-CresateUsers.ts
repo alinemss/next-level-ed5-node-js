@@ -1,3 +1,4 @@
+//Mission Complete
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class CresateUsers1619037912353 implements MigrationInterface {
